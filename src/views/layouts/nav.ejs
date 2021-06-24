@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/ed2e56c429.js"></script>
+    <script src="https://code.jquery.com/jquery-git.min.js"></script>
+    <script src='/api/ajax.js' defer></script>
+    <script src='/suggestion_bar.js' defer></script>
+</head>
+
+<body>
+    <form class='nav-search-bar' action='/search' value=''>
+        <div class='search-holder'>
+            <div class='submit-input'>
+                <i class="fas fa-search"></i>
+                <input type="submit" value=''>
+            </div>
+            <input type="text" id='search-value' name='q' placeholder="Search our store" autocomplete="off">
+            <button id='close-search'><i class="fas fa-times"></i></button>
+        </div>
+        <div class='suggestions'></div>
+    </form>
+    <header class='nav-bar'>
+        <ul class='header-menu'>
+            <li><a href='/'>Brands</a></li>
+            <li><a href='/'>Collections</a></li>
+            <li><a href='/'>Men</a></li>
+            <li><a href='/'>Women</a></li>
+            <li><a href='/'>Sale</a></li>
+        </ul>
+
+        <h1> <a href="/">Watches</a></h1>
+
+        <ul class='header-site-nav'>
+            <% if (typeof name != 'undefined') { %>
+                <li><a href='/account/overview'><i class="fas fa-user"></i></a></li>
+            <% } else { %>
+            <li><a href='/account/login'><i class="fas fa-user"></i></a></li>
+            <% } %>
+            <li><i id='search-icon' class="fas fa-search"></i></li>
+            <li><a href='/cart'><i class="fas fa-shopping-cart"></i></a></li>
+        </ul>
+    </header>
+</body>
+
+</html>

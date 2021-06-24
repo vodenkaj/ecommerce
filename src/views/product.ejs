@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="/collection.js" defer></script>
+		<% if (typeof name != 'undefined') { %>
+		<script src="/reviewWidget.js" defer></script>
+		<% } %>
+		<script src="/review.js" defer></script>
+		<script src="/imgSwapper.js" defer></script>
+		<title>Product</title>
+		<%- include('layouts/nav') %>
+	</head>
+
+	<body>
+		<script>
+			const productId = <%= product.id %>
+		</script>
+		<div class="content">
+			<div class="product-page">
+				<p>Home / G-Shock / Model</p>
+				<div class="grid">
+					<div class="left-side-watches-product-page">
+						<div class="watch-product-page">
+							<div class="watch" href="/">
+								<img src="/imgs/brands/1.jpg" />
+							</div>
+							<div class="watch" href="/">
+								<img src="/imgs/brands/<%= product.id %>.jpg" />
+							</div>
+						</div>
+						<div class="watch main" id='big-img-holder'>
+							<img src="/imgs/brands/<%= product.id %>.jpg" />
+						</div>
+					</div>
+					<div class="column product-details">
+						<h1 class="h1-product-name"><%= product.name %></h1>
+						<div class="review">
+							<% let total = reviews.length != 0 ? (reviews[0].t_rating*5)/(reviews.length*5) : 0; let n
+							= 0; while (total-1 >= 0) {%>
+							<i class="fas fa-star"></i>
+							<% total--; n++;} if (total > 0) { %>
+							<i class="fas fa-star-half-alt"></i>`
+							<% n++} while (n++ != 5) { %>
+							<i class="far fa-star"></i>
+							<% } %>
+							<span>(<%= reviews != null ? reviews.length : 0 %> Reviews)</span>
+						</div>
+						<span class="product-price"
+							>$<%= product.price / 100 %>.00 USD</span
+						>
+						<form action="/api/add-to-cart" method="post">
+							<button  class="colored-button" type="submit" value="<%= product.id %>" name="id">ADD TO CART</button>
+						</form>
+						<div class="product-benefits row">
+							<div class="column items-center">
+								<i class="fas fa-plane"></i>
+								<span>Free Shipping Worldwide</span>
+							</div>
+							<div class="column items-center">
+								<i class="fas fa-calendar"></i>
+								<span>30 Day Returns</span>
+							</div>
+							<div class="column items-center">
+								<i class="fas fa-shield"></i>
+								<span>Authorized Dealer</span>
+							</div>
+							<div class="column items-center">
+								<i class="fas fa-lock"></i>
+								<span>100% Secure Checkout</span>
+							</div>
+						</div>
+						<div class="row product-share">
+							<span><i class="fab fa-facebook-f"></i> Share</span>
+							<span><i class="fab fa-twitter"></i> Tweet</span>
+						</div>
+					</div>
+				</div>
+				<div class="grid desc">
+					<div class="column side-panel">
+						<div class="options">
+							<button id="show-panel">
+								<span>DESCRIPTION</span><i class="fas fa-sort-down"></i>
+							</button>
+							<div class="options-holder">
+								<span><%= product.data.description %></span>
+							</div>
+						</div>
+						<div class="options">
+							<button id="show-panel">
+								<span>SPECIFICATIONS</span><i class="fas fa-sort-down"></i>
+							</button>
+							<div class="options-holder">
+								<p>Case size: <%= product.data.case_size %>mm</p>
+								<p>Case shape: <%= product.data.case_shape %></p>
+								<p>Case material: <%= product.data.case_material %></p>
+								<p>Wrist width: <%= product.data.wrist_fit %>mm</p>
+								<p>Wrist material: <%= product.data.wrist_material %></p>
+								<p>Lens material: <%= product.data.lens_material %></p>
+								<p>Water resistance: <%= product.data.water_resistant %>m</p>
+								<p>Battery: <%= product.data.battery %></p>
+								<p>Warranty <%= product.data.warranty %> year</p>
+							</div>
+						</div>
+						<div class="options">
+							<button id="show-panel">
+								<span>SHIPPING</span><i class="fas fa-sort-down"></i>
+							</button>
+							<div class="options-holder">
+								<span
+									>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+									do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+									Ut enim ad minim veniam, quis nostrud exercitation ullamco
+									laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+									irure dolor in reprehenderit in voluptate velit esse cillum
+									dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+									cupidatat non proident, sunt in culpa qui officia deserunt
+									mollit anim id est laborum.</span
+								>
+							</div>
+						</div>
+						<div class="options">
+							<button id="show-panel">
+								<span>RETURNS</span><i class="fas fa-sort-down"></i>
+							</button>
+							<div class="options-holder">
+								<span
+									>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+									do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+									Ut enim ad minim veniam, quis nostrud exercitation ullamco
+									laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+									irure dolor in reprehenderit in voluptate velit esse cillum
+									dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+									cupidatat non proident, sunt in culpa qui officia deserunt
+									mollit anim id est laborum.</span
+								>
+							</div>
+						</div>
+						<div class="options">
+							<button id="show-panel">
+								<span>WARRANTY</span><i class="fas fa-sort-down"></i>
+							</button>
+							<div class="options-holder">
+								<span
+									>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+									do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+									Ut enim ad minim veniam, quis nostrud exercitation ullamco
+									laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+									irure dolor in reprehenderit in voluptate velit esse cillum
+									dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+									cupidatat non proident, sunt in culpa qui officia deserunt
+									mollit anim id est laborum.</span
+								>
+							</div>
+						</div>
+					</div>
+					<a class="main watch" href="/">
+						<img src="/imgs/brands/<%= product.id %>.jpg" />
+						<span>Brand One</span>
+					</a>
+				</div>
+				<div class="column">
+					<div class="row review-header">
+						<% if (reviews.length != 0) { %>
+						<h1>
+							<%= ((reviews[0].t_rating*5)/(reviews.length*5)).toFixed(1) %>
+						</h1>
+						<div class="column">
+							<div>
+								<% let total = (reviews[0].t_rating*5)/(reviews.length*5); let n
+								= 0; while (total-1 >= 0) {%>
+								<i class="fas fa-star"></i>
+								<% total--; n++;} if (total > 0) { %>
+								<i class="fas fa-star-half-alt"></i>
+								<% n++} while (n++ != 5) { %>
+								<i class="far fa-star"></i>
+								<% } %>
+							</div>
+							<span><%= reviews.length %> reviews</span>
+						</div>
+						<% } else { %>
+						<h1>0.0</h1>
+						<div class="column">
+							<div>
+								<i class="far fa-star"></i>
+								<i class="far fa-star"></i>
+								<i class="far fa-star"></i>
+								<i class="far fa-star"></i>
+								<i class="far fa-star"></i>
+							</div>
+							<span>0 reviews</span>
+						</div>
+						<% } %>
+					</div>
+
+					<div class="row">
+						<button id="filter-review">
+							<i class="fas fa-search"></i>Filter reviews
+						</button>
+						<% if (typeof name != 'undefined' && reviews) { %>
+						<button id="write-review">
+							<i class="fas fa-pen"></i>Write a review
+						</button>
+						<% } else if (typeof name == 'undefined'){%>
+						<span class="absolute-center"
+							>You need to <a href="/account/login">login</a> first to review
+							this product.</span
+						>
+						<% } %>
+					</div>
+					<% if (typeof name != 'undefined') { %>
+					<form
+						id="write-review-form"
+						action="/api/post-review"
+						method="post"
+						class="column"
+					>
+						<h4>What would you rate this product?</h4>
+						<div class="row review-rating">
+							<input value="<%= product.id %>" name="product_id" />
+							<label for="review-rating-5">
+								<input
+									id="review-rating-5"
+									type="radio"
+									name="rating"
+									value="5"
+								/>
+								<i class="fas fa-star"></i>
+							</label>
+							<label for="review-rating-4">
+								<input
+									id="review-rating-4"
+									type="radio"
+									name="rating"
+									value="4"
+								/>
+								<i class="fas fa-star"></i>
+							</label>
+							<label for="review-rating-3">
+								<input
+									id="review-rating-3"
+									type="radio"
+									name="rating"
+									value="3"
+								/>
+								<i class="fas fa-star"></i>
+							</label>
+							<label for="review-rating-2">
+								<input
+									id="review-rating-2"
+									type="radio"
+									name="rating"
+									value="2"
+								/>
+								<i class="fas fa-star"></i>
+							</label>
+							<label for="review-rating-1">
+								<input
+									id="review-rating-1"
+									type="radio"
+									name="rating"
+									value="1"
+								/>
+								<i class="fas fa-star"></i>
+							</label>
+						</div>
+						<h4>Tell us your feedback about the product</h4>
+						<textarea name="feedback" maxlength="500"></textarea>
+						<div class="row content-right">
+							<button id="cancel-review" type="button">Cancel</button>
+							<input type="submit" value="Submit" />
+						</div>
+					</form>
+					<% } %>
+					<div class="row">
+						<div class='column filter-review'>
+							<% for (let i = 4; i >= 0; i--) { %>
+								<button id='filter-reviews-<%=i%>' >
+									<div class='row space'>
+										<div>
+											<b>0.00%</b>
+											<span>0 Reviews</span>
+										</div>
+										<div>
+											<% for (let j = 0; j <= i; j++) { %>
+												<i class="fas fa-star"></i>
+											<% } %>
+										</div>		
+									</div>
+									<div class='percentage-line' id="percentage-line-<%= i %>">
+										<div class='fill'></div>
+									</div>
+								</button>
+							<% } %>
+						</div>
+						<div class="review-scroller">
+
+				    </div>
+					</div>
+			</div>
+			<%- include('layouts/footer') %>
+		</div>
+	</body>
+</html>

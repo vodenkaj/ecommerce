@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src='/collection.js' defer></script>
+    <script src='/sort.js' defer></script>
+    <title></title>
+    <%- include('layouts/nav.ejs') %>
+</head>
+
+<body>
+    <div class='paralax'></div>
+    <div class='content'>
+        
+        <div class='wrapper'>
+            <div class='column side-panel'>
+                <div class='options'>
+                    <button id='show-panel'><span>GENDER</span><i class="fas fa-sort-down"></i></button>
+                    <div class='options-holder'>
+                        <% attributes['gender'].forEach(gender => { %>
+                        <p><input type="checkbox" value='<%= gender %>' name='gender' autocomplete='off'> <%= gender %>
+                        </p>
+                        <% }); %>
+                    </div>
+                </div>
+                <div class='options'>
+                    <button id='show-panel'><span>COLOR</span><i class="fas fa-sort-down"></i></button>
+                    <div class='options-holder'>
+                        <% attributes['color'].forEach(color => { %>
+                        <p><input type="checkbox" value="<%= color %>" name='color' autocomplete='off'> <%= color %>
+                        </p>
+                        <% }); %>
+                    </div>
+                </div>
+                <div class='options'>
+                    <button id='show-panel'><span>CASE SHAPE</span><i class="fas fa-sort-down"></i></button>
+                    <div class='options-holder'>
+                        <% attributes['case_shape'].forEach(shape => { %>
+                        <p><input type="checkbox" value="<%= shape %>" name='case_shape'
+                                autocomplete='off'><%= shape %></p>
+                        <% }); %>
+                    </div>
+                </div>
+                <div class='options'>
+                    <button id='show-panel'><span>CASE SIZE</span><i class="fas fa-sort-down"></i></button>
+                    <div class='options-holder'>
+                        <% attributes['case_size'].forEach(size => { %>
+                        <p><input type="checkbox" value="<%= size %>" name='case_size' autocomplete='off'> <%= size %>
+                        </p>
+                        <% }); %>
+                    </div>
+                </div>
+            </div>
+            <div class='watches-container'>
+                <div class='top-watches-list'>
+                    <span>
+                        <%= products.length %> products</span>
+                    <select id='sort-watches' autocomplete='off'>
+                        <option value="name">Alphabetically</option>
+                        <option>Popular</option>
+                        <option>Featured</option>
+                        <option value="price">Price, low to high</option>
+                        <option value="price desc">Price, high to low</option>
+                    </select>
+                </div>
+                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </span>
+                <div class='start watches-row'>
+                    <% products.forEach(product => { %>
+                    <a class='watch' href="/product/<%= product.id %>">
+                        <img src='/imgs/brands/<%= product.id %>.jpg'>
+                        <span><%= product.name %></span>
+                    </a>
+                    <% }); %>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <%- include('layouts/footer') %>
+</body>
+
+</html>

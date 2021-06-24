@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cart</title>
+	<%- include('layouts/nav.ejs') %>
+</head>
+<body>
+	<div class='content cart'>
+		<h1>Cart</h1>
+		<% if (cart.length > 0) { %> 
+		<div class="cart-header">
+			<span>Quantity</span>
+			<span>Total</span>
+		</div>
+		<form class='column' action="/api/cart-action" method="post">
+		<% let total = 0; cart.forEach(product => { total += parseInt(product.count * product.price) %>
+			<div class='row'>
+				<img src="/imgs/brands/<%= product.id %>.jpg" />
+				<div class="space">
+					<div class="column">
+						<a href="/product/<%= product.id %>"><%= product.name %></a>
+						<button type="submit" name="remove" value="<%= product.id %>">REMOVE</button>
+					</div>
+				
+					<input type="number" name="<%= product.id %>" value="<%= product.count %>" min="0">
+					<span>$<%= product.count * product.price / 100 %>.00 %></span>
+				</div>
+				
+			</div>
+		<% }); %>
+		<div class="cart-footer">
+			<span>SUBTOTAL</span>
+			<span>$<%= total / 100%></span>
+		</div>
+		<div class='cart-action-buttons row'>
+			<input type="submit" name="update" value="UPDATE CART">
+			<a href="/cart/checkout">CLICK<button></button></a>
+		</div>
+		</form>
+
+		<% } else {%>
+		<h5>Your cart is currently empty.</h5>
+		<a class="underline" href="/">Continue shopping</a>
+		<% } %>
+	</div>
+	<%- include('layouts/footer') %>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+	<script src='/login.js' defer></script>
+</head>
+<body>
+	<%- include('layouts/nav') %>
+	<div class='items-center column content'>
+		<h1>Login</h1>
+		<form id='auth' class='column login'>
+			<div id='login-invalid'>
+				<span>Incorrect email or password.</span>
+			</div>
+			<% if (!login) { %>
+				<label>FIRST NAME</label>
+				<input id="first_name" type="text" name='first_name'>
+				<label>LAST NAME</label>
+				<input id="last_name" type="text" name='last_name'>
+			<% } %>
+			<label>EMAIL</label>
+			<input id='email' type="email" name='email'>
+			<label>PASSWORD</label>
+			<input id='password' type="password" name='password'>
+			<% if (!login) { %>
+				<input id='register' type="submit" value='CREATE'>
+			<% } else { %>
+				<input id='login' type="submit" value='SIGN IN'>
+			<% } %>
+		</form>
+		<% if (!login) { %>
+			<a class='default' href="/account/login">Already registered?</a>
+		<% } else { %>
+			<a class='default' href="/account/register">Create account</a>
+		<% } %>
+		</div>
+		
+	</div>
+	<%- include('layouts/footer') %>
+</body>
+</html>

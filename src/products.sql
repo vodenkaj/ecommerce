@@ -1,0 +1,5 @@
+INSERT INTO products (name, supplier_id, price, quantity) VALUES ('G-Shock', 1, 20000, 10);
+#INSERT INTO colors (name) VALUES ('black');
+
+INSERT INTO product_spec(product_id, data)
+VALUES (1, '{"color": "black", "gender": "male", "case_shape": "round", "case_size": "20", "case_material":"steel", "wrist_fit":"10","wrist_material":"leather","water_resistant":"20","lens_material":"glass","battery":"ASC","warranty":"2","description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}')
